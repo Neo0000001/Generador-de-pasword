@@ -24,6 +24,7 @@ Para ejecutar el script, simplemente abre una terminal y corre el archivo `gener
 
 ```bash
 python generador_password.py
+```
 
 ### Requisitos
 
