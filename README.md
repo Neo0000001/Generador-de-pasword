@@ -1,36 +1,30 @@
-# Generador de Passwords Aleatorios
+# README.txt
 
-Este proyecto es un script en Python que genera passwords aleatorios de una longitud especificada por el usuario. El objetivo es proporcionar una herramienta sencilla para crear contraseñas seguras y difíciles de adivinar.
+## Asesor y Generador de Passwords
 
-## Autor
-__Autor__: Enrique Manuel Jiménez
+### Autor
+Enrique Jimenez
 
-## Descripción
+### Versión
+1.0
 
-El script permite al usuario generar una contraseña aleatoria con una longitud especificada entre 8 y 15 caracteres. Utiliza una combinación de letras minúsculas, mayúsculas, números y caracteres especiales para garantizar la seguridad del password generado.
-
-## Funcionalidades
-
-- Generación de passwords aleatorios.
-- Validación de la longitud del password (entre 8 y 15 caracteres).
-- Limpieza de pantalla para una mejor visualización.
-- Manejo de errores para entradas no válidas.
-
-## Uso
-
-Para ejecutar el script, simplemente abre una terminal y corre el archivo `generador_password.py`. Sigue las instrucciones en pantalla para introducir la longitud deseada del password.
-
-### Ejecución del script
-
-```bash
-python generador_password.py
-```
+### Descripción
+Este proyecto es un asesor y generador de contraseñas aleatorias que proporciona herramientas para la gestión segura de contraseñas.
+Permite generar contraseñas aleatorias, almacenar y recuperar contraseñas encriptadas, y verificar la autenticidad del usuario mediante una contraseña maestra.
 
 ### Requisitos
+- Python 3.x
+- Librerías necesarias:
+  - colorama
+  - getpass
+  - hashlib
+  - json
+  - os
+  - random
+  - cryptography (Fernet)
 
-* Python 3.x
-
-### Notas
-
-Este script limpia la pantalla usando el comando clear, que funciona en sistemas Unix. Si estás usando Windows, puedes cambiar os.system('clear') por os.system('cls').
-¡Esperamos que este generador de passwords sea de utilidad para mantener tus cuentas seguras!
+### Instalación
+1. Clona el repositorio o descarga el código fuente.
+2. Instala las dependencias necesarias ejecutando:
+   ```sh
+   pip install colorama cryptography
