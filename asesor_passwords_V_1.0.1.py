@@ -8,9 +8,9 @@ import random
 from cryptography.fernet import Fernet
 
 # Información del proyecto
-__autor__: "Enrique Jimenez"
-__version__: "1.0"
-__description__: "Asesor de Passwords y Generador de Passwords aleatorios."
+__autor__ = 'Enrique Jimenez'
+__version__ = '1.0.1'
+__description__ = 'Asesor de Passwords y Generador de Passwords aleatorios.'
 
 # Inicializar colorama
 init()
@@ -90,7 +90,7 @@ class GeneradorPassword:
         for intento in range(intentos):
             # Ocultar la entrada de la contraseña
             contraseña_ingresada = getpass.getpass(
-                Fore.YELLOW + "\nIntroduce la contraseña de acceso al programa: " + Fore.RESET)
+                Fore.YELLOW + "Introduce la contraseña de acceso al programa: " + Fore.RESET)
             hash_contraseña_ingresada = self.generar_hash_contraseña(
                 contraseña_ingresada)
 
@@ -100,7 +100,7 @@ class GeneradorPassword:
                 return True
             else:
                 print(Fore.RED + f"\nContraseña incorrecta. Te quedan {
-                      intentos - intento - 1} intentos." + Fore.RESET)
+                      intentos - intento - 1} intentos.\n" + Fore.RESET)
 
         print(Fore.RED + 'Has superado el número de intentos permitidos. El programa se cerrará.' + Fore.RESET)
 
@@ -193,7 +193,7 @@ class GeneradorPassword:
             None
         """
 
-        urls = input(Fore.YELLOW + '\nIntroduce la dirección URL o presiona ENTER para cancelar y volver al menú principal: ' +
+        urls = input(Fore.YELLOW + '\nIntroduce la dirección' + Fore.GREEN + ' URL' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y volver al Menú Principal: ' +
                      Fore.RESET).lower().strip()
 
         # Si el usuario presiona ENTER, se cancela la operación y regresa al menú
@@ -204,7 +204,7 @@ class GeneradorPassword:
             return
 
         usuario = input(
-            Fore.YELLOW + '\nIntroduce el nombre de Usuario o presiona ENTER para cancelar y volver al menú principal: ' + Fore.RESET).lower().strip()
+            Fore.YELLOW + '\nIntroduce el nombre de' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y volver al Menú Principal: ' + Fore.RESET).lower().strip()
 
         # Si el usuario presiona ENTER, se cancela la operación y regresa al menú
         if usuario == '':
@@ -213,13 +213,14 @@ class GeneradorPassword:
         if self.usuario_existe(urls, usuario):
             print(
                 Fore.GREEN + '\nEl usuario introducido ya existe. No se pueden crear usuarios duplicados en la misma URL.' + Fore.RESET)
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+            input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                  Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
             return
 
         longitud = 16  # Longitud por defecto de la contraseña
 
         opcion = input(
-            '\nAl pulsar' + Fore.GREEN + ' ENTER' + Fore.RESET + ' se generará automáticamente una contraseña aleatoria de 16 caracteres de longitud. Si desea cambiar la longitud de la contraseña, introduzca' + Fore.GREEN + ' "Si" ' + Fore.RESET).lower().strip()
+            Fore.YELLOW + '\nAl pulsar' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' se generará automáticamente una contraseña aleatoria de 16 caracteres de longitud. Si desea cambiar la longitud de la contraseña, introduzca' + Fore.GREEN + ' "Si" ' + Fore.RESET).lower().strip()
 
         if opcion == 'si':
             try:
@@ -229,12 +230,13 @@ class GeneradorPassword:
                     print(
                         Fore.GREEN + '\nOpción no válida, debe introducir un número del 8 al 18' + Fore.RESET)
                     input(
-                        Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+                        Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                        Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
                     return
             except ValueError:
                 print(Fore.GREEN + '\nHa introducido un valor inválido.')
-                input(Fore.YELLOW +
-                      '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+                input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                      Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
                 return
 
@@ -247,10 +249,11 @@ class GeneradorPassword:
         self.diccionario['Urls'][urls].append(
             {'Usuario': usuario, 'Password': password})
 
-        print(Fore.GREEN + f'\nSe ha generado una contraseña aleatoria de {longitud} caracteres, para la URL ' + Fore.RED + f'{
-              urls}' + Fore.GREEN + ' y el Usuario ' + Fore.RED + f'{usuario}' + Fore.RESET + ' --> ' + Fore.BLUE + f'{password}')
+        print(Fore.YELLOW + f'\nSe ha generado una contraseña aleatoria de {longitud} caracteres, para la URL ' + Fore.RED + f'{
+              urls}' + Fore.YELLOW + ' y el Usuario ' + Fore.RED + f'{usuario}' + Fore.RESET + ' --> ' + Fore.BLUE + f'{password}')
 
-        input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+              Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
         self.save_to_file()  # Guarda el diccionario en el archivo
 
@@ -272,8 +275,8 @@ class GeneradorPassword:
             Ninguno
         """
 
-        urls = input(
-            Fore.YELLOW + '\nIntroduce la dirección URL o presiona ENTER para cancelar y regresar al Menu Principal: ' + Fore.RESET).lower().strip()
+        urls = input(Fore.YELLOW + '\nIntroduce la dirección' + Fore.GREEN + ' URL' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y volver al Menú Principal: ' +
+                     Fore.RESET).lower().strip()
 
         # Si el usuario presiona ENTER, se cancela la operación y regresa al menú
         if urls == '':
@@ -283,14 +286,14 @@ class GeneradorPassword:
             return
 
         usuario = input(
-            Fore.YELLOW + '\nIntroduce el nombre de Usuario o presiona ENTER para cancelar y regresar al Menu Principal: ' + Fore.RESET).lower().strip()
+            Fore.YELLOW + '\nIntroduce el nombre de' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y volver al Menú Principal: ' + Fore.RESET).lower().strip()
 
         # Si el usuario presiona ENTER, se cancela la operación y regresa al menú
         if usuario == '':
             return
 
         password = input(
-            Fore.YELLOW + 'Introduce la Contraseña o presiona ENTER para cancelar y regresar al Menu Principal: ' + Fore.RESET).strip()
+            Fore.YELLOW + '\nIntroduce la' + Fore.GREEN + ' Contraseña' + Fore.YELLOW + ' que deseas asignar al usuario o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y regresar al Menu Principal: ' + Fore.RESET).strip()
 
         # Si el usuario presiona ENTER, se cancela la operación y regresa al menú
         if password == '':
@@ -306,7 +309,8 @@ class GeneradorPassword:
 
         print(Fore.GREEN + '\nSe ha creado el registro correctamente... ')
 
-        input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+              Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
         self.save_to_file()  # Guarda el diccionario en el archivo
 
@@ -337,8 +341,8 @@ class GeneradorPassword:
             if opcion == 'si':
                 return True
             else:
-                input(Fore.YELLOW +
-                      '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+                input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                      Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
                 return False
 
         return True
@@ -429,10 +433,7 @@ class GeneradorPassword:
         """
 
         # Comprueba si el diccionario de URLs no contiene información
-        if not self.diccionario['Urls']:
-            print(
-                Fore.GREEN + '\nEl fichero todavía no contiene ningún registro.' + Fore.RESET)
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        if self.comprobar_si_vacio():
             return
 
         print(Fore.BLUE + '\n>== Listado de todos los registros almacenados en el Fichero de Passwords ==<\n' + Fore.RESET)
@@ -446,7 +447,8 @@ class GeneradorPassword:
                       Fore.RESET + f'{registro["Password"]}')
                 print('  ---------------------------')
 
-        input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+              Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
     def buscar_password(self):
         """
@@ -488,10 +490,7 @@ class GeneradorPassword:
         """
 
         # Comprueba si el diccionario de URLs no contiene información
-        if not self.diccionario['Urls']:
-            print(
-                Fore.GREEN + '\nEl fichero todavía no contiene ningún registro.' + Fore.RESET)
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        if self.comprobar_si_vacio():
             return
 
         print(Fore.BLUE + '\n>== Listado de URLS ==<\n' + Fore.RESET)
@@ -503,7 +502,7 @@ class GeneradorPassword:
 
         try:
             url_idx = int(
-                input(Fore.YELLOW + '\nIntroduce el índice de la URL donde se encuentra el usuario: ' + Fore.RESET))
+                input(Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' donde se encuentra el usuario: ' + Fore.RESET))
             if 1 <= url_idx <= len(urls):
                 url = urls[url_idx - 1]
 
@@ -515,7 +514,7 @@ class GeneradorPassword:
                           Fore.RESET + f'{usuario["Usuario"]}')
 
                 usuario_idx = int(
-                    input(Fore.YELLOW + '\nIntroduce el índice del usuario que deseas mostrar su contraseña: ' + Fore.RESET))
+                    input(Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' del' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' que deseas mostrar su contraseña: ' + Fore.RESET))
 
                 if 1 <= usuario_idx <= len(self.diccionario['Urls'][url]):
                     print(Fore.RED + '\nUsuario: ' + Fore.RESET +
@@ -529,7 +528,168 @@ class GeneradorPassword:
         except ValueError:
             print(Fore.GREEN + '\nEntrada no válida.' + Fore.RESET)
 
-        input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+              Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
+
+    def modificar_registro(self):
+
+        try:
+            if self.comprobar_si_vacio():
+                return
+
+            print(
+                Fore.BLUE + '\n>== Menú para la modificación de registros ==<' + Fore.RESET)
+            print(Fore.YELLOW + '\n[1]' + Fore.RESET +
+                  ' Modificar el nombre de una URL')
+            print(Fore.YELLOW + '[2]' + Fore.RESET +
+                  ' Modificar el nombre de un usuario')
+            print(Fore.YELLOW + '[3]' + Fore.RESET +
+                  ' Modificar una contraseña')
+
+            opcion = input(
+                Fore.YELLOW + '\nIntroduce una' + Fore.GREEN + ' opción' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y regresar al Menú Principal: ' + Fore.RESET)
+
+            if opcion == '':
+                return
+
+            if opcion == '1':
+                print(Fore.BLUE + '\n>== Listado de URLS ==<\n' + Fore.RESET)
+                urls = list(self.diccionario['Urls'].keys())
+                for indice, url in enumerate(urls, start=1):
+                    print(Fore.YELLOW + f'{indice} - ' + Fore.RESET + f'{url}')
+
+                url_idx = int(input(
+                    Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' que deseas modificar: ' + Fore.RESET))
+                nueva_url = input(
+                    Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' nuevo nombre' + Fore.YELLOW + ' que le darás a la' + Fore.GREEN + ' URL: ' + Fore.RESET)
+                confirmar = input(Fore.YELLOW + '\nSe va a proceder a' + Fore.GREEN + ' modificar' + Fore.YELLOW + ' el nombre de la' + Fore.GREEN + ' URL' + Fore.YELLOW + '. ¿Está completamente seguro? ' +
+                                  Fore.RED + '(Si/No) ' + Fore.RESET).lower().strip()
+
+                if confirmar == 'si':
+                    if 1 <= url_idx <= len(urls):
+                        url_anterior = urls[url_idx - 1]
+                        self.diccionario['Urls'][nueva_url] = self.diccionario['Urls'].pop(
+                            url_anterior)
+
+                        print(
+                            Fore.GREEN + '\nSe ha modificado el nombre de la URL correctamente... ' + Fore.RESET)
+                    else:
+                        print(Fore.GREEN + '\nÍndice no válido.' + Fore.RESET)
+                else:
+                    print(Fore.GREEN + '\nOperación cancelada.' + Fore.RESET)
+                    input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                          Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
+                    return
+
+            elif opcion == '2':
+                print(Fore.BLUE + '\n>== Listado de URLS ==<\n' + Fore.RESET)
+                urls = list(self.diccionario['Urls'].keys())
+                for indice, url in enumerate(urls, start=1):
+                    print(Fore.YELLOW + f'{indice} - ' + Fore.RESET + f'{url}')
+
+                url_idx = int(input(
+                    Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' donde se encuentra el usuario: ' + Fore.RESET))
+                if 1 <= url_idx <= len(urls):
+                    url = urls[url_idx - 1]
+
+                    print(
+                        Fore.BLUE + f'\n== Lista de usuarios almacenados en la URL {url} ==\n' + Fore.RESET)
+                    usuarios = [entry['Usuario']
+                                for entry in self.diccionario['Urls'][url] if 'Usuario' in entry]
+                    for indice, usuario in enumerate(usuarios, start=1):
+                        print(Fore.YELLOW + f'{indice} - ' +
+                              Fore.RESET + f'{usuario}')
+
+                    usuario_idx = int(input(
+                        Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' del' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' que deseas modificar: ' + Fore.RESET))
+                    nuevo_usuario = input(
+                        '\nIntroduce el' + Fore.GREEN + ' nuevo nombre' + Fore.YELLOW + ' que le darás al' + Fore.GREEN + ' Usuario: ')
+                    confirmar = input(Fore.YELLOW + '\nSe va a proceder a modificar el nombre de usuario. ¿Está completamente seguro? ' +
+                                      Fore.RED + '(Si/No) ' + Fore.RESET).lower().strip()
+
+                    if confirmar == 'si':
+                        if 1 <= usuario_idx <= len(usuarios):
+                            for entry in self.diccionario['Urls'][url]:
+                                if 'Usuario' in entry and entry['Usuario'] == usuarios[usuario_idx - 1]:
+                                    entry['Usuario'] = nuevo_usuario
+                                    break
+                            print(
+                                Fore.GREEN + '\nUsuario modificado correctamente... ' + Fore.RESET)
+                        else:
+                            print(Fore.GREEN + '\nÍndice no válido.' + Fore.RESET)
+                    else:
+                        print(Fore.GREEN + '\nOperación cancelada.' + Fore.RESET)
+                else:
+                    print(Fore.GREEN + '\nÍndice no válido.' + Fore.RESET)
+
+            elif opcion == '3':
+                print(Fore.BLUE + '\n>== Listado de URLS ==<\n' + Fore.RESET)
+                urls = list(self.diccionario['Urls'].keys())
+                for indice, url in enumerate(urls, start=1):
+                    print(Fore.YELLOW + f'{indice} - ' + Fore.RESET + f'{url}')
+
+                url_idx = int(input(
+                    Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' donde se encuentra el usuario que deseas modificar su contraseña: ' + Fore.RESET))
+                if 1 <= url_idx <= len(urls):
+                    url = urls[url_idx - 1]
+
+                    print(
+                        Fore.BLUE + f'\n== Lista de usuarios almacenados en la URL {url} ==\n' + Fore.RESET)
+                    usuarios = [entry['Usuario']
+                                for entry in self.diccionario['Urls'][url] if 'Usuario' in entry]
+                    for indice, usuario in enumerate(usuarios, start=1):
+                        print(Fore.YELLOW + f'{indice} - ' +
+                              Fore.RESET + f'{usuario}')
+
+                    usuario_idx = int(input(
+                        Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' del' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' que deseas modificar su contraseña: ' + Fore.RESET))
+                    nuevo_password = input(
+                        Fore.YELLOW + '\nIntroduce la' + Fore.GREEN + ' nueva contraseña' + Fore.YELLOW + ' para ese' + Fore.GREEN + ' Usuario: ' + Fore.RESET)
+                    confirmar = input(Fore.YELLOW + '\nSe va a proceder a modificar la contraseña. ¿Está completamente seguro? ' +
+                                      Fore.RED + '(Si/No) ' + Fore.RESET).lower().strip()
+
+                    if confirmar == 'si':
+                        if 1 <= usuario_idx <= len(usuarios):
+                            usuario_a_modificar = usuarios[usuario_idx - 1]
+                            for entry in self.diccionario['Urls'][url]:
+                                if 'Usuario' in entry and entry['Usuario'] == usuario_a_modificar:
+                                    for siguiente_entry in self.diccionario['Urls'][url]:
+                                        if 'Password' in siguiente_entry and siguiente_entry.get('Usuario') == usuario_a_modificar:
+                                            siguiente_entry['Password'] = nuevo_password
+                                            break
+                                    break
+                            print(
+                                Fore.GREEN + '\nContraseña modificada correctamente... ' + Fore.RESET)
+                        else:
+                            print(Fore.GREEN + '\nÍndice no válido.' + Fore.RESET)
+                    else:
+                        print(Fore.GREEN + '\nOperación cancelada.' + Fore.RESET)
+                else:
+                    print(Fore.GREEN + '\nÍndice no válido.' + Fore.RESET)
+
+            else:
+                print(Fore.GREEN + '\nOpción no válida.' + Fore.RESET)
+                input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                      Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
+
+            self.save_to_file()
+
+        except ValueError:
+            print(Fore.GREEN + '\nEntrada no válida.' + Fore.RESET)
+
+        input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+              Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
+
+    def comprobar_si_vacio(self):
+        # Comprueba si el diccionario de URLs no contiene información
+        if not self.diccionario['Urls']:
+            print(
+                Fore.GREEN + '\nEl fichero todavía no contiene ningún registro.' + Fore.RESET)
+            input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                  Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
+            return True
+        else:
+            return False
 
     def eliminar_registro(self):
         """
@@ -539,11 +699,7 @@ class GeneradorPassword:
         Una vez que se realiza la eliminación, guarda los datos actualizados en un archivo.
         """
 
-        # Comprueba si el diccionario de URLs no contiene información
-        if not self.diccionario['Urls']:
-            print(
-                Fore.GREEN + '\nEl fichero todavía no contiene ningún registro.' + Fore.RESET)
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+        if self.comprobar_si_vacio():
             return
 
         print(Fore.BLUE + '\n>== Menú para eliminación de registros ==<' + Fore.RESET)
@@ -553,7 +709,7 @@ class GeneradorPassword:
               ' Borrar un Usuario específico de una URL específica.')
 
         opcion = input(
-            Fore.YELLOW + '\nIntroduce una opción o presiona ENTER para cancelar y regresar al Menu Principal: ' + Fore.RESET)
+            Fore.YELLOW + '\nIntroduce una' + Fore.GREEN + ' opción' + Fore.YELLOW + ' o presiona' + Fore.GREEN + ' ENTER' + Fore.YELLOW + ' para cancelar y regresar al Menu Principal: ' + Fore.RESET)
 
         # Comprueba si se ha presionado ENTER y cancela la operación para regresar al menú
         if opcion == '':
@@ -567,7 +723,7 @@ class GeneradorPassword:
 
             try:
                 url_idx = int(
-                    input(Fore.YELLOW + '\nIntroduce el índice de la URL que deseas eliminar: ' + Fore.RESET))
+                    input(Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' que deseas eliminar: ' + Fore.RESET))
                 confirmar = input(
                     Fore.YELLOW + '\nSe va a proceder a eliminar la URL junto con todos sus usuarios. Esta completamente seguro? ' + Fore.RED + '(Si/No) ' + Fore.RESET).lower().strip()
 
@@ -587,7 +743,8 @@ class GeneradorPassword:
             except ValueError:
                 print(Fore.GREEN + '\nEntrada no válida.' + Fore.RESET)
 
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+            input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                  Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
         elif opcion == '2':
             print(Fore.BLUE + '\n>== Listado de URLS ==<\n' + Fore.RESET)
@@ -598,7 +755,7 @@ class GeneradorPassword:
 
             try:
                 url_idx = int(
-                    input(Fore.YELLOW + '\nIntroduce el índice de la URL donde se encuentra el usuario: ' + Fore.RESET))
+                    input(Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + 'índice' + Fore.YELLOW + ' de la' + Fore.GREEN + ' URL' + Fore.YELLOW + ' donde se encuentra el usuario: ' + Fore.RESET))
                 if 1 <= url_idx <= len(urls):
                     url = urls[url_idx - 1]
 
@@ -610,10 +767,14 @@ class GeneradorPassword:
                               Fore.RESET + f'{usuario["Usuario"]}')
 
                     usuario_idx = int(
-                        input(Fore.YELLOW + '\nIntroduce el índice del usuario que deseas eliminar: ' + Fore.RESET))
+                        input(Fore.YELLOW + '\nIntroduce el' + Fore.GREEN + ' índice' + Fore.YELLOW + ' del' + Fore.GREEN + ' Usuario' + Fore.YELLOW + ' que deseas eliminar: ' + Fore.RESET))
 
                     if 1 <= usuario_idx <= len(self.diccionario['Urls'][url]):
                         del self.diccionario['Urls'][url][usuario_idx - 1]
+                        # Comprueba si esa URL no contiene mas usuarios, en caso afirmativo tambien elimina la URL
+                        if not self.diccionario['Urls'][url][:]:
+                            del self.diccionario['Urls'][url]
+
                         print(
                             Fore.GREEN + '\nUsuario eliminado correctamente... ' + Fore.GREEN)
                     else:
@@ -623,11 +784,13 @@ class GeneradorPassword:
             except ValueError:
                 print(Fore.GREEN + '\nEntrada no válida.')
 
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+            input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                  Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
         else:
             print(Fore.GREEN + '\nOpción no válida.' + Fore.RESET)
-            input(Fore.YELLOW + '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+            input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                  Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
         self.save_to_file()
 
@@ -681,9 +844,10 @@ class GeneradorPassword:
                   ' Crear un nuevo registro de forma manual')
             print(Fore.YELLOW + '[3]' + Fore.RESET + ' Listar registros')
             print(Fore.YELLOW + '[4]' + Fore.RESET + ' Buscar contraseña')
-            print(Fore.YELLOW + '[5]' +
+            print(Fore.YELLOW + '[5]' + Fore.RESET + ' Modificar Registro')
+            print(Fore.YELLOW + '[6]' +
                   Fore.RESET + ' Eliminar un registro')
-            print(Fore.YELLOW + '[6]' + Fore.RESET + ' Salir\n')
+            print(Fore.YELLOW + '[7]' + Fore.RESET + ' Salir\n')
 
             opcion = input(
                 Fore.YELLOW + 'Seleccione una opción: ' + Fore.RESET)
@@ -697,15 +861,18 @@ class GeneradorPassword:
             elif opcion == '4':
                 self.buscar_password()
             elif opcion == '5':
-                self.eliminar_registro()
+                self.modificar_registro()
             elif opcion == '6':
-                print(Fore.GREEN + '\nSaliendo del gestor de passwords. Hasta pronto!!')
+                self.eliminar_registro()
+
+            elif opcion == '7':
+                print(Fore.GREEN + '\nSaliendo del programa. Hasta pronto!!')
                 break
             else:
                 print(
                     Fore.GREEN + '\nOpción no válida, por favor seleccione una opción válida.' + Fore.RESET)
-                input(Fore.YELLOW +
-                      '\nPulse ENTER para regresar al menú... ' + Fore.RESET)
+                input(Fore.YELLOW + '\nPulse' + Fore.GREEN + ' ENTER' +
+                      Fore.YELLOW + ' para regresar al menú... ' + Fore.RESET)
 
 
 if __name__ == '__main__':

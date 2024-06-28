@@ -1,4 +1,4 @@
-# README.txt
+# README.md
 
 ## Asesor y Generador de Passwords
 
@@ -27,4 +27,4 @@ Permite generar contraseñas aleatorias, almacenar y recuperar contraseñas encr
 1. Clona el repositorio o descarga el código fuente.
 2. Instala las dependencias necesarias ejecutando:
    ```sh
-   pip install colorama cryptography
+   pip install colorama getpass hashlib cryptography
